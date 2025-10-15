@@ -12,6 +12,7 @@ import teamRoute from "./routes/team.routes.js";
 import teamMemberRouter from "./routes/teamembers.routes.js";
 import webhookLogRouter from "./routes/webhooklog.routes.js";
 import kycRouter from "./routes/kyc.routes.js";
+import analyticRouter from "./routes/analytic.routes.js";
 
 dotenv.config();
 
@@ -33,5 +34,6 @@ app.use("/api/superadmin/team",teamRoute);
 app.use("/api/superadmin/teammember",teamMemberRouter);
 app.use("/api/superadmin/webhooklogs",webhookLogRouter);
 app.use("/api/superadmin/kyc",kycRouter);
+app.use("/api/superadmin/analytic",analyticRouter)
 
 export default app;

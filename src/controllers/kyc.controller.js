@@ -1,4 +1,4 @@
-import { getCompanyMobileByCompanyId, getKycByCompanyId, getKycStatus, verifyKycByCompanyId } from "../models/kyc.model.js";
+import { getAllKycList, getCompanyMobileByCompanyId, getKycByCompanyId, getKycStatus, verifyKycByCompanyId } from "../models/kyc.model.js";
 import { sendSmsNotification } from "../utills/smsService.js";
 import authenticate from "../middlewares/authenticate.middleware.js";
 
@@ -29,7 +29,30 @@ import authenticate from "../middlewares/authenticate.middleware.js";
 // }
 
 
-//superAdmin: Get kyc form fields
+// Get kyc details
+export async function getAllKycListController(req,res){
+    try {
+        const kycList= await getAllKycList();
+        return res.status(200).json({
+            message: "Get All Kyc List ",
+            success:true,
+            kycList
+        })
+
+    } catch (error) {
+        console.log("GetAllKyc",error.mesaage);
+        res.status(500).json({
+            success: false,
+            message: 'Failed to fetch All KYC List',
+            error: error.message
+        })
+        
+    }
+}
+
+
+
+// superAdmin: Get kyc form fields
 
 export async function getKycFormController(req,res){
     try{

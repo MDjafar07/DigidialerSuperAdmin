@@ -9,7 +9,8 @@ const pool = new Pool({
   database: process.env.DB_NAME,   // <-- corrected
   port: Number(process.env.DB_PORT) || 5432,
   password: process.env.DB_PASSWORD,
-  ssl: { rejectUnauthorized: false } // <-- required for Supabase
+  // ssl: { rejectUnauthorized: false } // <-- required for Supabase
+
 });
 
 pool.on('connect', () => console.log('Database connected ✅'));

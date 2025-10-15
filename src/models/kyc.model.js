@@ -1,5 +1,12 @@
 import pool from "../config/db.js";
 
+//Get all KYC details
+export async function getAllKycList(){
+    const {rows} = await pool.query(
+        `SELECT *FROM auths.company_kyc`
+    );
+    return rows;
+}
 
 // Get KYC by company ID
 export async function getKycByCompanyId(company_id){
