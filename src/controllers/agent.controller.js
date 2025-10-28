@@ -34,8 +34,6 @@ export async function getAgentByIdController(req, res) {
 
         const agent = await getAgentById(id);
 
-
-
         if (!agent) {
             return res.status(404).json({ message: "Agent not found" });
         }

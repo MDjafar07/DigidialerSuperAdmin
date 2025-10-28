@@ -41,31 +41,37 @@ export async function getTeamMembersController(req, res) {
 }
 
 // Delete member by ID
-export async function deleteMemberController(req,res){
-  try{
-  const {id} = req.params;
-  if(!id || !isNaN(id)){
-    return res.status(400).json({message:"Invalid member Id"})
-  }
-  const deletedMember=await deleteMember(id)
-  if(!deletedMember){
-    return res.status(404).json({
-      message:"Member not found",
-      success:false
+export async function deleteMemberController(req, res) {
+  try {
+    const { teamId, userId } = req.params;
+
+    // Validate both params
+    if (!teamId || !userId || isNaN(teamId) || isNaN(userId)) {
+      return res.status(400).json({
+        message: "Invalid teamId or userId",
+        success: false,
+      });
+    }
+
+    const deletedMember = await deleteMember(teamId, userId);
+
+    if (!deletedMember) {
+      return res.status(404).json({
+        message: "Member not found",
+        success: false,
+      });
+    }
+
+    res.status(200).json({
+      message: "Member deleted successfully",
+      deletedMember,
+      success: true,
+    });
+  } catch (error) {
+    console.error("Error deleting member:", error.message);
+    res.status(500).json({
+      message: error.message,
+      success: false,
     });
   }
-  res.status(200).json({
-    message:"Member delete Sucessfull",
-    deletedMember,
-    success:true
-  })
-}catch(error){
-    console.log(error.message);
-    res.status(500).json({
-      message:error.message,
-      success:true,
-    })
-    
-}
-  
 }

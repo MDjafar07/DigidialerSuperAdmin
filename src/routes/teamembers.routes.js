@@ -8,7 +8,7 @@ const teamMemberRouter = express.Router();
 teamMemberRouter.post("/team-members", addTeamMemberController);
 
 // List members of a team
+teamMemberRouter.delete("/delete/:teamId/:userId",deleteMemberController);
 teamMemberRouter.get("/:team_id", getTeamMembersController);
-teamMemberRouter.delete("/:id",deleteMemberController)
 
 export default teamMemberRouter;

@@ -69,8 +69,7 @@ export async function createsuperAdminController(req, res) {
         const superAdmin = await createSuperAdmin({ name, email, password: hashedPassword, global_role });
         return res.status(201).json({
             message: "SuperAdmin created successfully",
-            superAdmin,
-            password: hashedPassword
+            superAdmin
         })
     } catch (error) {
         console.log(error.message);

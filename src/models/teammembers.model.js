@@ -41,11 +41,14 @@ export async function getTeamById(id) {
   return rows[0];
 }
 
-//Delete member by Id
-export async function deleteMember(id){
+//Delete member by teamId and userId
+export async function deleteMember(teamId, userId) {
   const { rows } = await pool.query(
-    "DELETE FROM auths.team_members WHERE id=$1 RETURNING *",
-    [id]
+    `DELETE FROM auths.team_members 
+     WHERE team_id = $1 AND user_id = $2
+     RETURNING *`,
+    [teamId, userId]
   );
+
   return rows[0];
 }
