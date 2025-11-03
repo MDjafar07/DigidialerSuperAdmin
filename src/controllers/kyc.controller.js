@@ -50,8 +50,6 @@ export async function getAllKycListController(req,res){
     }
 }
 
-
-
 // superAdmin: Get kyc form fields
 
 export async function getKycFormController(req,res){
@@ -151,3 +149,4 @@ export async function verifyKycController(req, res) {
         });
     }
 }
+

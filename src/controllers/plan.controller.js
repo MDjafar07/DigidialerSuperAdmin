@@ -120,7 +120,7 @@ export async function deletePlanController(req,res) {
             success: true
         });
     } catch (error) {
-        console.error("Update plans error", error.message);
+        console.error("Delete plans error", error.message);
         res.status(500).json({
             success: false,
             message: "Server Error",
